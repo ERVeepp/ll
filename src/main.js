@@ -8,6 +8,7 @@ import Cookie from 'js-cookie'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './styles/base.scss'
+import './permission'
 
 Vue.prototype.$ajax = service
 Vue.prototype.$cookie = Cookie
