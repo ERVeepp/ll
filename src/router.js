@@ -24,34 +24,25 @@ export default new Router({
       path: '/',
       name: 'app',
       components: {
+        nav: () => import('./views/nav.vue'),
+        sidebar: () => import('./views/sidebar.vue'),
         default: () => import('./views/main.vue')
       },
       children: [
         {
-          path: 'ssp',
-          name: 'ssp',
-          components:{
-            nav: () => import('./views/nav.vue'),
-            sidebar: () => import('./views/sidebar.vue'),
-            default: () => import('./views/ssp.vue'),
-          },
+          path: 'offer',
+          name: 'offer',
+          component: () => import('./views/offer.vue'),
           children: [
             {
-              path: 'offer',
-              name: 'offer',
-              component: () => import('./views/offer.vue'),
-              children: [
-                {
-                  path: 'create',
-                  name: 'create',
-                  component: () => import('./views/post.vue')
-                },
-                {
-                  path: 'edit/:id(\\d+)',
-                  name: 'edit',
-                  component: () => import('./views/post.vue')
-                }
-              ]
+              path: 'create',
+              name: 'create',
+              component: () => import('./views/post.vue')
+            },
+            {
+              path: 'edit/:id(\\d+)',
+              name: 'edit',
+              component: () => import('./views/post.vue')
             }
           ]
         }

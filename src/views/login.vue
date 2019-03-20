@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='flex full'>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="账号" prop="username">
         <el-input v-model="ruleForm.username"></el-input>
@@ -8,7 +8,7 @@
         <el-input v-model="ruleForm.password"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">Login</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -36,7 +36,11 @@
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
             console.log('submit!')
-            
+            let data = await this.$store.dispatch('LoginByUsername', this.ruleForm)
+            // console.log(data)
+            if (data.status === 0) {
+              this.$router.push('/offer')
+            }
           } else {
             console.log('error submit!!')
             return false;
